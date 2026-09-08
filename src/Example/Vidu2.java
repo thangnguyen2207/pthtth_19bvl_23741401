@@ -1,0 +1,28 @@
+package Example;
+
+import java.io.IOException;
+import java.io.InputStream;
+
+public class Vidu2 {
+    public static void main(String[] args) throws InterruptedException {
+        InputStream is = System.in;
+        while (true) {
+            try {
+                if (is.available() > 0) {
+                    byte[] buffer = new byte[is.available()];
+                    int bytesRead = is.read(buffer);
+                    if (bytesRead == -1) {
+                        break;
+                    }
+                    String str = new String(buffer, 0, bytesRead);
+                    System.out.print(str);
+                } else {
+                    System.out.print('_');
+                    Thread.sleep(100);
+                }
+            } catch (IOException ioe) {
+                ioe.printStackTrace();
+            }
+        }
+    }
+}
